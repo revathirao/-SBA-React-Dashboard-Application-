@@ -15,10 +15,11 @@ export interface Task {
 
 //formData
 export interface TaskFormData {
-   stitle: string;
+   title: string;
    description: string;
    priority: Priority;
    dueDate: string;
+   status: TaskStatus;
 }
 
 export interface TaskFilterOptions {
@@ -49,7 +50,9 @@ export interface TaskItemProps {
 
 //Form props
 export interface TaskFormProps {
-   onAddTask: (data: TaskFormData) => void; // add new task
+   task?: TaskFormData; // optional, pre-fill for editing
+   onAddTask: (data: TaskFormData) => void;
+   onEditTask?: (data: TaskFormData) => void; // optional handler for edits
 }
 
 //DashBoard Props

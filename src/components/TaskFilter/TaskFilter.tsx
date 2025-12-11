@@ -16,8 +16,8 @@ export function TaskFilter({ filters, onChangeFilters }: TaskFilterProps) {
       });
    };
 
-   // Function to handle when the user changes the task priority filter
-   // It updates the parent component with the new filter values
+   /* Function to handle when the user changes the task priority filter
+    It updates the parent component with the new filter values*/
    const handlePriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
       onChangeFilters({
          ...filters,
