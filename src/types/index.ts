@@ -58,7 +58,6 @@ export interface TaskFormProps {
 //DashBoard Props
 export interface DashboardProps {
    tasks: Task[]; // list of tasks
-
    onAddTask: (data: TaskFormData) => void; // add new task
    onDelete: (id: string) => void; // delete handler
    onStatusChange: (taskId: string, newStatus: TaskStatus) => void; // mark status like complete, pending or inprogress
