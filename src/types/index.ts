@@ -1,5 +1,5 @@
-export type TaskStatus = "pending" | "in-progress" | "completed";
-export type Priority = "low" | "medium" | "high";
+export type TaskStatus = "all" | "pending" | "in-progress" | "completed";
+export type Priority = "all" | "low" | "medium" | "high";
 export type Theme = "light" | "dark";
 
 //task
@@ -10,7 +10,7 @@ export interface Task {
    status: TaskStatus;
    priority: Priority;
    dueDate: string;
-   createdAt: string;
+   // createdAt: string;
 }
 
 //formData
@@ -26,6 +26,7 @@ export interface TaskFilterOptions {
    status: TaskStatus;
    priority: Priority;
    search: string;
+   sortBy?: "dueDate" | "priority" | "status" | "none";
 }
 
 //Taskfilter props

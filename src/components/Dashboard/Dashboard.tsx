@@ -2,6 +2,8 @@
 import type { DashboardProps } from "../../types";
 import { TaskForm } from "../TaskForm/TaskForm";
 import { TaskList } from "../TaskList/TaskList";
+import { filterTask, sortTask } from  "../utils/taskUtils"
+
 // import { TaskFilter } from "../TaskFilter/TaskFilter";
 // import { UtilityDashboard } from "../UtilityDashboard/UtilityDashboard";
 
@@ -11,6 +13,7 @@ export function Dashboard({
    onDelete,
    onStatusChange,
    theme,
+   onToggleTheme,
 }: //    onToggleTheme,
 DashboardProps) {
    return (
@@ -33,6 +36,10 @@ DashboardProps) {
                onStatusChange={onStatusChange}
                onDelete={onDelete}
             />
+
+            <button onClick={onToggleTheme} className="theme-toggle-btn">
+               Toggle {theme === "light" ? "Dark" : "Light"} Mode
+            </button>
          </div>
       </div>
    );

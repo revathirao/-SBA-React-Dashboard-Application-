@@ -100,8 +100,31 @@ Search: "{filters.search}" <button onClick={() => clearFilter("search")}>×</but
 {/_ Task statistics _/}
 <UtilityDashboard tasks={tasks} />
 </div>
+import { filterTask, sortTask } from "../utils/utils";
 
-      {/* Optional Theme Toggle */}
-      <button onClick={onToggleTheme} className="theme-toggle-btn">
-        Toggle {theme === "light" ? "Dark" : "Light"} Mode
-      </button>
+const filteredTasks = filterTask(tasks, filters);
+const sortedTasks = sortTask(filteredTasks, filters.sortBy);
+Then render sortedTasks in your <TaskList>.
+
+TaskForm.tsx → Uses validateTask
+ts
+Copy code
+import { validateTask } from "../utils/utils";
+
+const error = validateTask(formData);
+if (error) {
+   setError(error);
+   return;
+}
+
+
+      
+      ---------------------------
+
+      But you never created filters or onChangeFilters inside Dashboard.
+
+✔️ Missing:
+
+filter state
+filtered task logic
+passing filters into list
