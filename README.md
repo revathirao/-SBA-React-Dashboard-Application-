@@ -71,3 +71,28 @@ export default defineConfig([
   },
 ])
 ```
+
+
+ {/* Active filter indicators */}
+      <div className="active-filters">
+        {filters.status !== "all" && (
+          <span className="filter-badge">
+            Status: {filters.status}{" "}
+            <button onClick={() => clearFilter("status")}>×</button>
+          </span>
+        )}
+        {filters.priority !== "all" && (
+          <span className="filter-badge">
+            Priority: {filters.priority}{" "}
+            <button onClick={() => clearFilter("priority")}>×</button>
+          </span>
+        )}
+        {filters.search && (
+          <span className="filter-badge">
+            Search: "{filters.search}" <button onClick={() => clearFilter("search")}>×</button>
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
