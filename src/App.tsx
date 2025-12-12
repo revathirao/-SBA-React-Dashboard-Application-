@@ -36,10 +36,19 @@ export function App() {
       );
    };
 
+   const [filters, setFilters] = useState<TaskFilterOptions>({
+      status: "all",
+      priority: "all",
+      search: "",
+      sortBy: "dueDate",
+   });
+
    return (
       <div>
          <Dashboard
             tasks={tasks}
+            filters={filters}
+            onChangeFilters={setFilters}
             onAddTask={handleAddTask}
             onDelete={handleDeleteTask}
             onStatusChange={handleStatusChange}

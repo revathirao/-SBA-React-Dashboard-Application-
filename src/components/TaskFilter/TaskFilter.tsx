@@ -56,6 +56,21 @@ export function TaskFilter({ filters, onChangeFilters }: TaskFilterProps) {
             onChange={handleSearchChange} // Calls the handler when priority changes
             style={{ marginRight: "1rem" }}
          />
+         <label style={{ marginLeft: "20px" }}>
+            Sort By:{" "}
+            <select
+               value={filters.sortBy}
+               onChange={(e) =>
+                  onChangeFilters({
+                     ...filters,
+                     sortBy: e.target.value as typeof filters.sortBy,
+                  })
+               }>
+               <option value="dueDate">Due Date</option>
+               <option value="priority">Priority</option>
+               <option value="status">Status</option>
+            </select>
+         </label>
 
          {/* Dropdown to filter tasks by status */}
          {/*
