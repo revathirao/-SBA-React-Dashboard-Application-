@@ -92,7 +92,7 @@ export function TaskForm({ onAddTask, task, onEditTask }: TaskFormProps) {
             <option value="completed">Completed</option>
          </select>
 
-         {/* Task Priority */}
+         {/* Task Priority   */}
          <select
             name="priority"
             value={formData.priority}
