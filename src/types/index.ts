@@ -10,7 +10,6 @@ export interface Task {
    status: TaskStatus;
    priority: Priority;
    dueDate: string;
-   // createdAt: string;
 }
 
 //formData
@@ -40,6 +39,7 @@ export interface TaskListProps {
    tasks: Task[]; // list of tasks
    onDelete: (id: string) => void; // delete handler
    onStatusChange: (taskId: string, newStatus: TaskStatus) => void; // mark status like complete, pending or inprogress
+   onEditTask: (task: Task) => void;
 }
 
 //TaskItem Props
@@ -47,13 +47,14 @@ export interface TaskItemProps {
    task: Task; // the task to render
    onStatusChange: (taskId: string, newStatus: TaskStatus) => void; // mark status like complete, pending or inprogress
    onDelete: (taskId: string) => void; // delete handler
+   onEditTask: (task: Task) => void;
 }
 
 //Form props
 export interface TaskFormProps {
    task?: TaskFormData; // optional, pre-fill for editing
    onAddTask: (data: TaskFormData) => void;
-   onEditTask?: (data: TaskFormData) => void; // optional handler for edits
+   onEditTask: (data: TaskFormData) => void; // optional handler for edits
 }
 
 //DashBoard Props

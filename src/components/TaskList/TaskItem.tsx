@@ -6,7 +6,12 @@ import { dateFormating } from "../../utils/taskUtils";
  * It accepts 'task' details, and two handler functions: 'onStatusChange' and 'onDelete'.
  * This component represents a single item in a task list UI.
  */
-export function TaskItem({ task, onStatusChange, onDelete }: TaskItemProps) {
+export function TaskItem({
+   task,
+   onStatusChange,
+   onDelete,
+   onEditTask,
+}: TaskItemProps) {
    /*
     * 'handleStatusSelect' is an event handler for the dropdown menu (select element).
     * It is triggered when the user changes the status of a task.
@@ -58,6 +63,9 @@ export function TaskItem({ task, onStatusChange, onDelete }: TaskItemProps) {
 
          <button className="delete-btn" onClick={handleDelete}>
             Delete
+         </button>
+         <button className="edit-btn" onClick={() => onEditTask(task)}>
+            Edit
          </button>
          <p>Due: {dateFormating(task.dueDate)}</p>
       </li>

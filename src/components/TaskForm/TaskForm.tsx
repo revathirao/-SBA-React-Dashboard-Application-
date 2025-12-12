@@ -12,9 +12,19 @@ export function TaskForm({ onAddTask, task, onEditTask }: TaskFormProps) {
       status: "pending",
    });
 
-   // When editing → pre-fill the form
+   // useEffect → resets form after editing
    useEffect(() => {
-      if (task) setFormData(task);
+      if (task) {
+         setFormData(task); // editing mode
+      } else {
+         setFormData({
+            title: "",
+            description: "",
+            priority: "low",
+            dueDate: "",
+            status: "pending",
+         });
+      }
    }, [task]);
 
    // Single change handler for all inputs
@@ -50,6 +60,8 @@ export function TaskForm({ onAddTask, task, onEditTask }: TaskFormProps) {
          setError("");
          return; // do NOT reset form on editing
       }
+
+      // Add mode
       onAddTask(formData); // pass the task to parent
 
       //reset form
@@ -97,11 +109,9 @@ export function TaskForm({ onAddTask, task, onEditTask }: TaskFormProps) {
             name="priority"
             value={formData.priority}
             onChange={handleChange}>
-            <option value="pending">low</option>
-
-            <option value="pending">low</option>
-            <option value="in-progress">medium</option>
-            <option value="completed">high</option>
+            <option value="low">low</option>
+            <option value="medium">medium</option>
+            <option value="high">high</option>
          </select>
 
          {/* DUE DATE */}

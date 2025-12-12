@@ -7,12 +7,37 @@ import type {
    TaskFormData,
    TaskStatus,
    TaskFilterOptions,
+   Theme,
 } from "./types";
-import "./App.css";
 
 export default function App() {
-   //  Setup theme using your beginner-friendly function
-   const { theme, toggleTheme } = setupTheme();
+   //    // const { theme: initialTheme, toggleTheme: rawToggleTheme } = setupTheme();
+
+   //    //  Setup theme using your beginner-friendly function
+   //    const { theme, toggleTheme } = setupTheme();
+
+   // const toggleTheme = () => {
+   //    const newTheme = rawToggleTheme();
+   //    setTheme(newTheme);
+   // };
+   //    // Wrap toggleTheme to update React state
+   //   const toggleTheme = () => {
+   //     const newTheme = rawToggleTheme(); // updates localStorage and body attribute
+   //     setTheme(newTheme); // triggers React re-render
+   //   };
+
+   // Get theme + toggle function from utility
+   const { theme: initialTheme, toggleTheme: toggleThemeFromUtils } =
+      setupTheme();
+
+   // Local state inside App
+   const [theme, setTheme] = useState<Theme>(initialTheme);
+
+   // App wrapper for toggling
+   const handleToggleTheme = () => {
+      const newTheme = toggleThemeFromUtils();
+      setTheme(newTheme);
+   };
 
    // State to hold tasks/Load task  from loacl storage if available
    const [tasks, setTasks] = useState<Task[]>(() => {
@@ -27,7 +52,7 @@ export default function App() {
       // If found, parse and return it; otherwise, return default values
       return saved
          ? JSON.parse(saved)
-         : { status: "all", priority: "all", search: "", sortBy: "dueDate" };
+         : { status: "all", priority: "all", search: "", sortBy: "none" };
    });
 
    // Save tasks to localStorage whenever they change
@@ -58,6 +83,10 @@ export default function App() {
       setTasks(tasks.filter((t) => t.id !== id));
    };
 
+   const handleUpdateTask = (updated: Task) => {
+      setTasks(tasks.map((t) => (t.id === updated.id ? updated : t)));
+   };
+
    //Function to change status of a task
    const handleStatusChange = (taskId: string, newStatus: TaskStatus) => {
       setTasks(
@@ -74,8 +103,9 @@ export default function App() {
             onAddTask={handleAddTask}
             onDelete={handleDeleteTask}
             onStatusChange={handleStatusChange}
+            onUpdateTask={handleUpdateTask}
             theme={theme}
-            onToggleTheme={toggleTheme}
+            onToggleTheme={handleToggleTheme}
          />
       </div>
    );

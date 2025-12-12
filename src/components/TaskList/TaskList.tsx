@@ -13,7 +13,12 @@ import { TaskItem } from "../TaskList/TaskItem";
  * It uses the `.map()` function to iterate through the tasks array.
  * It passes individual task data and interaction handlers down to the child 'TaskItem' components.
  */
-export function TaskList({ tasks, onStatusChange, onDelete }: TaskListProps) {
+export function TaskList({
+   tasks,
+   onStatusChange,
+   onDelete,
+   onEditTask,
+}: TaskListProps) {
    return (
       <div>
          {tasks.length === 0 ? ( // Check if the 'tasks' array is empty.
@@ -34,6 +39,7 @@ export function TaskList({ tasks, onStatusChange, onDelete }: TaskListProps) {
                      task={task}
                      onStatusChange={onStatusChange}
                      onDelete={onDelete}
+                     onEditTask={onEditTask}
                   />
                ))}
             </ul>

@@ -15,11 +15,6 @@ export function filterTask(tasks: Task[], filters: TaskFilterOptions) {
          return false;
       }
 
-      // Filter by status
-      if (filters.status !== "all" && task.status !== filters.status) {
-         return false;
-      }
-
       // Filter by priority
       if (filters.priority !== "all" && task.priority !== filters.priority) {
          return false;
@@ -47,6 +42,9 @@ export function sortTask(
    const copySorted = [...tasks];
 
    switch (sortBy) {
+      case "none":
+         return tasks;
+
       case "dueDate":
          return copySorted.sort(
             (a, b) =>

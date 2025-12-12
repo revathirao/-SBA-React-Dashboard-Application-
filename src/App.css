@@ -189,6 +189,28 @@ body {
    color: #b30000;
 }
 
+.priority-badge {
+   padding: 4px 8px;
+   border-radius: 6px;
+   font-size: 0.75rem;
+   font-weight: bold;
+}
+
+.priority-badge.low {
+   background-color: #d4edda;
+   color: #155724;
+}
+
+.priority-badge.medium {
+   background-color: #fff3cd;
+   color: #856404;
+}
+
+.priority-badge.high {
+   background-color: #f8d7da;
+   color: #721c24;
+}
+
 /* --------------------------------------
    DARK MODE
 ---------------------------------------*/

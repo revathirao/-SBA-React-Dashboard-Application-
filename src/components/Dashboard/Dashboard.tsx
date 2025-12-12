@@ -1,5 +1,10 @@
-// import React from "react";
-import type { DashboardProps, TaskFilterOptions } from "../../types";
+import { useState } from "react";
+import type {
+   DashboardProps,
+   TaskFilterOptions,
+   Task,
+   TaskFormData,
+} from "../../types";
 import { TaskForm } from "../TaskForm/TaskForm";
 import { TaskList } from "../TaskList/TaskList";
 import { filterTask, sortTask } from "../../utils/taskUtils";
@@ -9,6 +14,7 @@ import { TaskFilter } from "../TaskFilter/TaskFilter";
 interface DashboardWithFiltersProps extends DashboardProps {
    filters: TaskFilterOptions; // current filter values
    onChangeFilters: (filters: TaskFilterOptions) => void; // handler to update filters
+   onUpdateTask: (task: Task) => void;
 }
 
 export function Dashboard({
@@ -19,8 +25,24 @@ export function Dashboard({
    onStatusChange,
    onChangeFilters,
    theme,
+   onUpdateTask,
    onToggleTheme,
 }: DashboardWithFiltersProps) {
+   const [editingTask, setEditingTask] = useState<Task | null>(null);
+
+   const handleEditTask = (updated: TaskFormData) => {
+      if (!editingTask) return;
+
+      const updatedTask: Task = {
+         ...editingTask,
+         ...updated, // overwrite title, description, priority, dueDate, status
+      };
+
+      // setTasks(tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t)));
+      onUpdateTask(updatedTask);
+      setEditingTask(null); // clear editing state
+   };
+
    //  Apply filtering and sorting
    const filteredTasks = filterTask(tasks, filters);
    const sortedTasks = sortTask(filteredTasks, filters.sortBy);
@@ -41,7 +63,11 @@ export function Dashboard({
             <TaskFilter filters={filters} onChangeFilters={onChangeFilters} />
 
             {/* Task form */}
-            <TaskForm onAddTask={onAddTask} />
+            <TaskForm
+               onAddTask={onAddTask}
+               onEditTask={handleEditTask}
+               task={editingTask || undefined}
+            />
          </div>
 
          {/* Task statistics */}
@@ -59,13 +85,14 @@ export function Dashboard({
                tasks={sortedTasks} // now TaskList shows filtered + sorted tasks
                onStatusChange={onStatusChange}
                onDelete={onDelete}
+               onEditTask={(task) => setEditingTask(task)}
             />
 
             {/* Theme toggle */}
             <button onClick={onToggleTheme} className="theme-toggle-btn">
                Toggle {theme === "light" ? "Dark" : "Light"} Mode
             </button>
-         </div>
+         </div>   
       </div>
    );
 }

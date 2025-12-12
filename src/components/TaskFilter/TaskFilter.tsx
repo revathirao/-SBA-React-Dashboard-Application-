@@ -25,15 +25,6 @@ export function TaskFilter({ filters, onChangeFilters }: TaskFilterProps) {
       });
    };
 
-   // Function to clear a specific filter
-   //    const clearFilter = (filterName: keyof typeof filters) => {
-   //       const newFilters = {
-   //          ...filters,
-   //          [filterName]: filterName === "search" ? "" : "all",
-   //       };
-   //       onChangeFilters(newFilters);
-   //    };
-
    /* Handler for when the user types in the search input
     * e.target.value contains the search text
     * Updates only the 'search' property in the filters object
@@ -66,9 +57,10 @@ export function TaskFilter({ filters, onChangeFilters }: TaskFilterProps) {
                      sortBy: e.target.value as typeof filters.sortBy,
                   })
                }>
-               <option value="dueDate">Due Date</option>
-               <option value="priority">Priority</option>
-               <option value="status">Status</option>
+               <option value="none">None</option>
+               <option value="dueDate">due Date</option>
+               <option value="priority">priority</option>
+               <option value="status">status</option>
             </select>
          </label>
 
