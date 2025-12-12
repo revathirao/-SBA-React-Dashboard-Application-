@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import type { TaskFormProps, TaskFormData } from "../../types";
-import { validateTask  } from  "../utils/taskUtils"
-
+import { validateTask } from "../../utils/taskUtils";
 
 export function TaskForm({ onAddTask, task, onEditTask }: TaskFormProps) {
    const [error, setError] = useState(""); // simple validation error
@@ -32,6 +31,12 @@ export function TaskForm({ onAddTask, task, onEditTask }: TaskFormProps) {
    // Form submit handler
    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
       event.preventDefault();
+
+      const error = validateTask(formData);
+      if (error) {
+         setError(error);
+         return; // Stop submission if there is an error
+      }
 
       // Basic validation
       if (!formData.title.trim()) {

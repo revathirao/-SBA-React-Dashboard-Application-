@@ -97,14 +97,6 @@ Search: "{filters.search}" <button onClick={() => clearFilter("search")}>×</but
 }
 
 ----------------------- in Dashboard
-{/_ Task statistics _/}
-<UtilityDashboard tasks={tasks} />
-</div>
-import { filterTask, sortTask } from "../utils/utils";
-
-const filteredTasks = filterTask(tasks, filters);
-const sortedTasks = sortTask(filteredTasks, filters.sortBy);
-Then render sortedTasks in your <TaskList>.
 
 TaskForm.tsx → Uses validateTask
 ts
