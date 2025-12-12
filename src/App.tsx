@@ -8,8 +8,9 @@ import type {
    TaskStatus,
    TaskFilterOptions,
 } from "./types";
+import "./App.css";
 
-export function App() {
+export default function App() {
    //  Setup theme using your beginner-friendly function
    const { theme, toggleTheme } = setupTheme();
 

@@ -4,7 +4,7 @@
    padding: 2rem;
    text-align: center;
 }
-.dashboard-container {
+/* .dashboard-container {
    padding: 20px;
    max-width: 900px;
    margin: 0 auto;
@@ -51,4 +51,215 @@ body[data-theme="dark"] {
 .task-list-item-exit-active {
    opacity: 0;
    transform: translateY(-20px);
+} */
+
+/* --------------------------------------
+   GLOBAL STYLES
+---------------------------------------*/
+body {
+   font-family: "Inter", sans-serif;
+   margin: 0;
+   padding: 0;
+   color: #333;
 }
+
+.dashboard-container {
+   max-width: 1000px;
+   margin: auto;
+   padding: 1rem;
+}
+
+/* --------------------------------------
+   FILTER BAR
+---------------------------------------*/
+.task-filter {
+   background: white;
+   padding: 1rem;
+   border-radius: 10px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   display: flex;
+   gap: 1rem;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+
+.task-filter select,
+.task-filter input {
+   padding: 8px;
+   border-radius: 6px;
+   border: 1px solid #ccc;
+}
+
+/* --------------------------------------
+   FORM STYLING
+---------------------------------------*/
+.task-form {
+   margin-top: 1rem;
+   background: white;
+   padding: 1rem;
+   border-radius: 10px;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.task-form input,
+.task-form select {
+   flex: 1 1 180px;
+   padding: 10px;
+   border-radius: 5px;
+   border: 1px solid #ccc;
+}
+
+.task-form button {
+   background: #4a90e2;
+   color: white;
+   border: none;
+   padding: 10px 18px;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: 0.2s;
+}
+
+.task-form button:hover {
+   background: #357ac8;
+}
+
+/* --------------------------------------
+   TASK ITEM CARD
+---------------------------------------*/
+.task-item {
+   background: white;
+   border-radius: 10px;
+   padding: 1rem;
+   margin-bottom: 1rem;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+   text-align: left;
+}
+
+.task-item h3 {
+   margin: 0;
+   font-size: 1.1rem;
+}
+
+.task-actions {
+   margin-top: 10px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.delete-btn {
+   background: #ff4d4d;
+   color: white;
+   padding: 6px 10px;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+}
+
+.delete-btn:hover {
+   background: #e60000;
+}
+
+/* --------------------------------------
+   PRIORITY BADGES
+---------------------------------------*/
+.task-priority {
+   padding: 4px 8px;
+   border-radius: 6px;
+   font-weight: bold;
+   display: inline-block;
+   font-size: 0.85rem;
+}
+
+.task-priority.low {
+   background: #d4f7d4;
+   color: #2d7a32;
+}
+
+.task-priority.medium {
+   background: #fff4cc;
+   color: #b8860b;
+}
+
+.task-priority.high {
+   background: #ffe0e0;
+   color: #b30000;
+}
+
+/* --------------------------------------
+   DARK MODE
+---------------------------------------*/
+body.dark {
+   background: #1c1c1c;
+   color: white;
+}
+
+body.dark .task-item,
+body.dark .task-form,
+body.dark .task-filter {
+   background: #2d2d2d;
+   box-shadow: none;
+}
+
+body.dark input,
+body.dark select {
+   background: #444;
+   color: white;
+   border: 1px solid #666;
+}
+
+/* --------------------------------------
+   THEME BUTTON
+---------------------------------------*/
+.theme-toggle-btn {
+   margin-top: 2rem;
+   padding: 10px 20px;
+   background: #6644ff;
+   color: white;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+}
+
+.theme-toggle-btn:hover {
+   background: #5936d9;
+}
+
+.task-stats {
+   display: flex;
+   justify-content: space-around;
+   background: #f8f9fa;
+   padding: 15px;
+   border-radius: 10px;
+   margin-bottom: 20px;
+   font-size: 16px;
+   font-weight: 600;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-stats p {
+   margin: 0;
+   padding: 8px 12px;
+   border-radius: 6px;
+}
+
+/* Colors */
+.task-stats p:nth-child(1) {
+   background: #6c757d;
+   color: white;
+} /* Total */
+.task-stats p:nth-child(2) {
+   background: #28a745;
+   color: white;
+} /* Completed */
+.task-stats p:nth-child(3) {
+   background: #dc3545;
+   color: white;
+} /* Pending */
+.task-stats p:nth-child(4) {
+   background: #ffc107;
+   color: black;
+} /* In progress */

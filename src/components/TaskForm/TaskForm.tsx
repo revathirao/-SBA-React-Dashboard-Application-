@@ -97,26 +97,11 @@ export function TaskForm({ onAddTask, task, onEditTask }: TaskFormProps) {
             name="priority"
             value={formData.priority}
             onChange={handleChange}>
-            <option value="pending">Pending</option>
-            <option value="in-progress">In Progress</option>
-            <option value="completed">Completed</option>
-         </select>
+            <option value="pending">low</option>
 
-         {/* Task Priority */}
-         <select
-            name="priority"
-            value={formData.priority}
-            onChange={handleChange}>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-         </select>
-
-         {/* Task Status */}
-         <select name="status" value={formData.status} onChange={handleChange}>
-            <option value="pending">Pending</option>
-            <option value="in-progress">In Progress</option>
-            <option value="completed">Completed</option>
+            <option value="pending">low</option>
+            <option value="in-progress">medium</option>
+            <option value="completed">high</option>
          </select>
 
          {/* DUE DATE */}
