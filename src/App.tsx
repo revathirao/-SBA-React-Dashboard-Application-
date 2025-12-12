@@ -1,15 +1,43 @@
 // App.tsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import { setupTheme } from "./utils/taskUtils";
-import type { Task, TaskFormData, TaskStatus } from "./types";
+import type {
+   Task,
+   TaskFormData,
+   TaskStatus,
+   TaskFilterOptions,
+} from "./types";
 
 export function App() {
    //  Setup theme using your beginner-friendly function
    const { theme, toggleTheme } = setupTheme();
 
-   // State to hold tasks
-   const [tasks, setTasks] = useState<Task[]>([]);
+   // State to hold tasks/Load task  from loacl storage if available
+   const [tasks, setTasks] = useState<Task[]>(() => {
+      const saved = localStorage.getItem("tasks");
+      return saved ? JSON.parse(saved) : [];
+   });
+
+   const [filters, setFilters] = useState<TaskFilterOptions>(() => {
+      // Try to get saved filters from localStorage
+      const saved = localStorage.getItem("filters");
+
+      // If found, parse and return it; otherwise, return default values
+      return saved
+         ? JSON.parse(saved)
+         : { status: "all", priority: "all", search: "", sortBy: "dueDate" };
+   });
+
+   // Save tasks to localStorage whenever they change
+   useEffect(() => {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+   }, [tasks]);
+
+   // Save filters to localStorage whenever they change
+   useEffect(() => {
+      localStorage.setItem("filters", JSON.stringify(filters));
+   }, [filters]);
 
    // Function to add a task
    const handleAddTask = (taskData: TaskFormData) => {
@@ -35,13 +63,6 @@ export function App() {
          tasks.map((t) => (t.id === taskId ? { ...t, status: newStatus } : t))
       );
    };
-
-   const [filters, setFilters] = useState<TaskFilterOptions>({
-      status: "all",
-      priority: "all",
-      search: "",
-      sortBy: "dueDate",
-   });
 
    return (
       <div>
