@@ -4,63 +4,15 @@
    padding: 2rem;
    text-align: center;
 }
-/* .dashboard-container {
-   padding: 20px;
-   max-width: 900px;
-   margin: 0 auto;
-}
 
-.task-list-item {
-   border: 1px solid #ccc;
-   padding: 10px;
-   margin-bottom: 10px;
-   border-radius: 5px;
-   transition: transform 0.2s;
-}
+/*GLOBAL STYLES*/
 
-.task-list-item:hover {
-   transform: scale(1.02);
-}
-
-body[data-theme="light"] {
-   background-color: #f9f9f9;
-   color: #333;
-}
-
-body[data-theme="dark"] {
-   background-color: #222;
-   color: #f9f9f9;
-}
-
-.task-list-item {
-   transition: all 0.3s ease;
-}
-
-.task-list-item-enter {
-   opacity: 0;
-   transform: translateY(-20px);
-}
-.task-list-item-enter-active {
-   opacity: 1;
-   transform: translateY(0);
-}
-.task-list-item-exit {
-   opacity: 1;
-   transform: translateY(0);
-}
-.task-list-item-exit-active {
-   opacity: 0;
-   transform: translateY(-20px);
-} */
-
-/* --------------------------------------
-   GLOBAL STYLES
----------------------------------------*/
 body {
    font-family: "Inter", sans-serif;
    margin: 0;
    padding: 0;
    color: #333;
+   transition: background-color 0.4s, color 0.4s ease;
 }
 
 .dashboard-container {
@@ -69,9 +21,24 @@ body {
    padding: 1rem;
 }
 
-/* --------------------------------------
-   FILTER BAR
----------------------------------------*/
+.app-header {
+   display: flex;
+   justify-content: space-between; /** NEW: Pushes the title and button to opposite ends **/
+   align-items: center; /** NEW: Vertically centers them **/
+   margin-bottom: 2rem; /** NEW: Adds space below the header before the filter bar **/
+   padding: 0 1rem; /** NEW: Ensures it aligns with your dashboard-container padding **/
+}
+
+h1 {
+   text-align: center;
+   margin-bottom: 0;
+   color: #2c3e50;
+   font-size: 1.8rem;
+   transition: color 0.4s ease;
+}
+
+/*   FILTER BAR*/
+
 .task-filter {
    background: white;
    padding: 1rem;
@@ -84,16 +51,29 @@ body {
    flex-wrap: wrap;
 }
 
+.task-filter label {
+   font-weight: 600;
+   color: #2c3e50;
+}
+
 .task-filter select,
 .task-filter input {
    padding: 8px;
    border-radius: 6px;
-   border: 1px solid #ccc;
+   border: 0.5px solid #ccc;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+   padding: 8px 12px;
+   cursor: pointer;
+   font-size: 0.9rem;
 }
 
-/* --------------------------------------
-   FORM STYLING
----------------------------------------*/
+.task-filter select:focus,
+.task-filter input:focus {
+   background-color: #eee;
+}
+
+/* FORM STYLING */
+
 .task-form {
    margin-top: 1rem;
    background: white;
@@ -112,28 +92,46 @@ body {
    border-radius: 5px;
    border: 1px solid #ccc;
 }
+.date-button-wrapper {
+   display: flex; /* side-by-side */
+   align-items: center; /* Aligns them vertically in the middle */
+   gap: 10px; /* Adds space between the date box and the button */
+   width: 90%;
+   margin: 0 auto;
+}
 
 .task-form button {
    background: #4a90e2;
    color: white;
    border: none;
    padding: 10px 18px;
-   border-radius: 8px;
+   padding: 25px;
+   border-radius: 6px;
    cursor: pointer;
    transition: 0.2s;
+   font-weight: bold;
+   font-size: 1.5rem;
+}
+
+.date-button-wrapper input,
+.task-form button {
+   flex: 1; /* both items grow equally to fill the space */
+   /* Ensure default width settings are not interfering*/
+   width: auto;
+   height: 50px; /* Set a specific, consistent height */
+   padding: 0 10px; /* padding- so content is centered vertically */
+   box-sizing: border-box;
 }
 
 .task-form button:hover {
-   background: #357ac8;
+   background: #365578 !important;
 }
 
-/* --------------------------------------
-   TASK ITEM CARD
----------------------------------------*/
+/* TASK ITEM SECTION */
+
 .task-item {
    background: white;
    border: 1px solid #dcdcdc;
-   border-radius: 10px;
    border-radius: 10px;
    padding: 1rem;
    margin-bottom: 1rem;
@@ -142,25 +140,74 @@ body {
    position: relative;
 }
 
-.task-item {
-   border: 1px solid #dcdcdc;
-   border-radius: 10px;
-   padding: 20px;
-   margin: 20px 0;
-   background: #fff;
-   position: relative; /* Key: Establishes context for absolute positioning */
-   /* Removed: display: flex; flex-direction: column; gap: 10px; */
-}
 .task-item h3 {
    margin: 0;
    font-size: 1.1rem;
+   font-weight: 700;
+   margin-bottom: 8px;
+   color: #2c3e50;
+   text-align: left;
 }
-/* 
-.task-actions {
-   margin-top: 10px;
+
+.task-item p {
+   margin: 4px 0;
+   color: #555;
+   text-align: left;
+}
+
+.task-description {
+   margin-top: 1rem;
+   font-size: 0.95rem; /* Makes the text slightly smaller than the default body text */
+   color: #555; /* A slightly softer color for light mode */
+   line-height: 1.4; /* Improves readability */
+   /*  box appearance */
+   padding: 10px;
+   border: 1px solid #ddd; /* A subtle border color */
+   background-color: #f9f9f9;
+   border-radius: 5px;
+   max-height: 100px; /*limits the height of the box (adds scrollbar if overflow) */
+   overflow-y: auto; /* adds a vertical scrollbar if content exceeds max-height */
+}
+
+.task-details-bottom {
    display: flex;
-   justify-content: space-between;
-} */
+   justify-content: space-between; /* Pushes priority to the left, date to the right */
+   align-items: center;
+   margin-top: 1rem;
+}
+
+.priority-badge {
+   padding: 4px 10px;
+   border-radius: 4px;
+   font-size: 0.8rem;
+   font-weight: bold;
+   display: inline-block;
+   text-transform: capitalize;
+}
+
+/* Color coding for priority levels */
+
+.priority-badge.low {
+   background-color: #d1ecf1; /* Light blue */
+   color: #0c5460;
+}
+
+.priority-badge.medium {
+   background-color: #ffeeba; /* Light yellow/orange */
+   color: #856404;
+}
+
+.priority-badge.high {
+   background-color: #f8d7da; /* Light red/pink */
+   color: #721c24;
+}
+
+.task-due-date {
+   margin-top: 0.5rem; /* Adjust margin above the due date */
+   margin-bottom: 0; /* Remove bottom margin */
+   font-size: 0.85rem;
+   color: #666; /* Optional: Make the text slightly lighter */
+}
 
 .task-actions {
    position: absolute; /* Key: Positions this element relative to the .task-item */
@@ -172,6 +219,34 @@ body {
    gap: 10px; /* Adds space between the select dropdown and the button */
 }
 
+.task-status-select {
+   border: none;
+   padding: 6px 12px;
+   border-radius: 6px;
+   background-color: #ecf0f1; /* Light gray background */
+   cursor: pointer;
+   font-size: 0.9rem;
+}
+
+.task-status-select:focus {
+   outline: none;
+   background-color: #dcdcdc;
+}
+
+.edit-btn {
+   background: #3498db; /* A nice blue color */
+   color: white;
+   padding: 6px 10px;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   transition: 0.2s;
+}
+
+.edit-btn:hover {
+   background: #2980b9;
+}
+
 .delete-btn {
    background: #ff4d4d;
    color: white;
@@ -181,96 +256,86 @@ body {
    cursor: pointer;
 }
 
-/* .delete-btn:hover {
-   background: #e60000;
-} */
+.delete-btn:hover {
+   background: #e74c3c;
+}
 
-/* --------------------------------------
-   PRIORITY BADGES
----------------------------------------*/
-.task-priority {
-   padding: 4px 8px;
+/*------------ TASK STATS------------------- */
+
+.task-stats {
+   display: flex;
+   justify-content: space-around;
+   background: #f8f9fa;
+   padding: 15px;
+   border-radius: 10px;
+   margin-top: 1rem;
+   margin-bottom: 20px;
+   font-size: 16px;
+   font-weight: 600;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-stats p {
+   padding: 5px 15px;
    border-radius: 6px;
-   font-weight: bold;
-   display: inline-block;
-   font-size: 0.85rem;
+   margin: 0 5px;
+   display: inline-block; /* Ensures padding and margins work correctly** */
+   text-align: center;
 }
+/* Colors -TASK STATS */
 
-/* .task-priority.low {
-   background: #d4f7d4;
-   color: #2d7a32;
-}
+.task-stats p:nth-child(1) {
+   background: #6c757d;
+   color: white;
+} /* Total */
 
-.task-priority.medium {
-   background: #fff4cc;
-   color: #b8860b;
-}
+.task-stats p:nth-child(2) {
+   background: #28a745;
+   color: white;
+} /* Completed */
 
-.task-priority.high {
-   background: #ffe0e0;
-   color: #b30000;
-} */
+.task-stats p:nth-child(3) {
+   background: #dc3545;
+   color: white;
+} /* Pending */
 
-.task-priority.low {
-   **background: transparent !important; /* Changed from #d4f7d4 */**
-   color: #2d7a32;
-}
+.task-stats p:nth-child(4) {
+   background: #ffc107;
+   color: black;
+} /* In progress */
 
-.task-priority.medium {
-   **background: transparent !important; /* Changed from #fff4cc */**
-   color: #b8860b;
-}
+/* THEME tOGGLE BUTTON */
 
-.task-priority.high {
-   **background: transparent !important; /* Changed from #ffe0e0 */**
-   color: #b30000;
-}
-
-.priority-badge {
-   padding: 4px 8px;
-   border-radius: 6px;
-   font-size: 0.75rem;
-   font-weight: bold;
+/* .theme-toggle-btn { */
+/* margin-top: 0; */
+/* padding: 10px 20px;
+   background: #6644ff;
+   color: white;
    border: none;
-   /* border-radius: 10px; */
-}
-
-.priority-badge.low {
-   background-color: #d4edda;
-   color: #155724;
-}
-
-.priority-badge.medium {
-   background-color: #fff3cd;
-   color: #856404;
-}
-
-.priority-badge.high {
-   background-color: #f8d7da;
-   color: #721c24;
-}
-
-/* --------------------------------------
-   DARK MODE
----------------------------------------*/
-/* body.dark {
-   background: #1c1c1c;
-   color: white;
-}
-
-body.dark .task-item,
-body.dark .task-form,
-body.dark .task-filter {
-   background: #2d2d2d;
-   box-shadow: none;
-}
-
-body.dark input,
-body.dark select {
-   background: #444;
-   color: white;
-   border: 1px solid #666;
+   border-radius: 8px;
+   cursor: pointer;
+   box-shadow: 0 2px 5px rgba(102, 68, 255, 0.4);
+   transition: background-color 0.2s, box-shadow 0.2s;
 } */
+
+/* --- The Beautified Icon Theme Toggle Button Styles --- */
+.theme-toggle-btn {
+   /* MODIFIED: Making it a subtle, icon-focused button */
+   background: none; /* No background needed */
+   color: #95a5a6; /* A neutral gray that works in both light and dark modes */
+   border: none;
+   padding: 0; /* No padding needed around the icon itself */
+   cursor: pointer;
+   font-size: 1.5rem; /* Makes the icon a good size */
+   transition: color 0.3s ease; /* Smooth color change on hover/theme */
+}
+
+.theme-toggle-btn:hover {
+   background: #5936d9;
+}
+
+/* DARK MODE */
+
 body[data-theme="dark"] {
    background: #1c1c1c;
    color: white;
@@ -278,9 +343,16 @@ body[data-theme="dark"] {
 
 body[data-theme="dark"] .task-item,
 body[data-theme="dark"] .task-form,
-body[data-theme="dark"] .task-filter {
+body[data-theme="dark"] .task-filter,
+body[data-theme="dark"] .task-stats {
    background: #2d2d2d;
    box-shadow: none;
+}
+
+body[data-theme="dark"] h1,
+body[data-theme="dark"] .task-filter label,
+body[data-theme="dark"] .task-item h3 {
+   color: #ecf0f1; /* Ensures titles and labels are light colored in dark mode */
 }
 
 body[data-theme="dark"] input,
@@ -291,98 +363,17 @@ body[data-theme="dark"] select {
 }
 
 body[data-theme="dark"] .task-description {
-   color: #ccc; /* Changes the text color for better contrast in dark mode */
+   color: #ccc;
+   background-color: #3a3a3a; /* Darker background for the box */
+   /* border-color: #555; Slightly lighter border for contrast */
+   border: 1px solid #666;
 }
 
-/* --------------------------------------
-   THEME BUTTON
----------------------------------------*/
-.theme-toggle-btn {
-   /* margin-top: 2rem; */
-   margin-top: 0;
-
-   padding: 10px 20px;
-   background: #6644ff;
-   color: white;
-   border: none;
-   border-radius: 8px;
-   cursor: pointer;
+body[data-theme="dark"] h1 {
+   color: #ecf0f1; /* Bright white for dark mode title */
 }
 
-.theme-toggle-btn:hover {
-   background: #5936d9;
+body[data-theme="dark"] select option {
+   background: #444; /* Dark background for the option list */
+   color: white; /* White text for contrast */
 }
-.task-description {
-   margin-top: 0.5rem; /* Adds a small space above the description */
-   margin-bottom: 1rem; /* Adds space below it before the priority badge */
-   font-size: 0.95rem; /* Makes the text slightly smaller than the default body text */
-   color: #555; /* A slightly softer color for light mode */
-   line-height: 1.4; /* Improves readability */
-}
-
-.task-stats {
-   display: flex;
-   justify-content: space-around;
-   background: #f8f9fa;
-   padding: 15px;
-   border-radius: 10px;
-   margin-bottom: 20px;
-   font-size: 16px;
-   font-weight: 600;
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.task-stats p {
-   margin: 0;
-   padding: 8px 12px;
-   border-radius: 6px;
-}
-
-.task-form button,
-.delete-btn,
-.edit-btn {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   padding: 6px 10px; /* Reduces vertical padding slightly for icons */
-}
-
-/* Add style for the edit button since you didn't have one before */
-.edit-btn {
-   background: #4a90e2;
-   color: white;
-   border: none;
-   border-radius: 6px;
-   cursor: pointer;
-   transition: 0.2s;
-}
-
-.delete-btn {
-   background: #ff4d4d; /* Ensures delete button is red */
-   color: white;
-   /* ... other styles ... */
-}
-
-/* .edit-btn {
-   /* background: #4a90e2; Ensures edit button is blue */
-   /* color: white;
-   
-} */
-
-/* Colors */
-.task-stats p:nth-child(1) {
-   background: #6c757d;
-   color: white;
-} /* Total */
-.task-stats p:nth-child(2) {
-   background: #28a745;
-   color: white;
-} /* Completed */
-.task-stats p:nth-child(3) {
-   background: #dc3545;
-   color: white;
-} /* Pending */
-.task-stats p:nth-child(4) {
-   background: #ffc107;
-   color: black;
-} /* In progress */

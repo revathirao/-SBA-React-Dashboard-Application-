@@ -28,7 +28,6 @@ export function Dashboard({
    onUpdateTask,
    onToggleTheme,
 }: DashboardWithFiltersProps) {
-  
    const [editingTask, setEditingTask] = useState<Task | null>(null);
 
    const handleEditTask = (updated: TaskFormData) => {
@@ -66,6 +65,15 @@ export function Dashboard({
 
    return (
       <div className={`dashboard-container ${theme}`}>
+         <div className="header-container" style={{ padding: "20px" }}>
+            <h1>Task Manager</h1>
+            {/* Theme toggle */}
+            <button onClick={onToggleTheme} className="theme-toggle-btn">
+               <i className="fas fa-sun"></i>{" "}
+               {/* This icon changes based on theme state */}
+               {/* Toggle {theme === "light" ? "Dark" : "Light"} Mode */}
+            </button>
+         </div>
          {/* Top section: Filters + Add/Edit Form */}
          <div className="Top-of-Dashboard">
             {/* Task filter */}
@@ -96,11 +104,6 @@ export function Dashboard({
                onDelete={onDelete}
                onEditTask={(task) => setEditingTask(task)}
             />
-
-            {/* Theme toggle */}
-            <button onClick={onToggleTheme} className="theme-toggle-btn">
-               Toggle {theme === "light" ? "Dark" : "Light"} Mode
-            </button>
          </div>
       </div>
    );

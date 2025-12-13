@@ -115,15 +115,18 @@ export function TaskForm({ onAddTask, task, onEditTask }: TaskFormProps) {
          </select>
 
          {/* DUE DATE */}
-         <input
-            name="dueDate"
-            type="date"
-            value={formData.dueDate}
-            onChange={handleChange}
-         />
+         <div className="date-button-wrapper">
+            <input
+               className="due-date-input"
+               name="dueDate"
+               type="date"
+               value={formData.dueDate}
+               onChange={handleChange}
+            />
 
-         {/* SUBMIT BUTTON */}
-         <button type="submit">{task ? "Update Task" : "Add Task"}</button>
+            {/* SUBMIT BUTTON */}
+            <button type="submit">{task ? "Update Task" : "Add Task"}</button>
+         </div>
       </form>
    );
 }
