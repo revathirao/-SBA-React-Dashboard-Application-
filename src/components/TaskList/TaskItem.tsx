@@ -36,6 +36,7 @@ export function TaskItem({
    const handleDelete = () => {
       onDelete(task.id);
    };
+   console.log(task.dueDate, typeof task.dueDate);
 
    /*
     * The component renders a list item (li) for the task.
@@ -48,23 +49,42 @@ export function TaskItem({
    return (
       <li className="task-item">
          <h3> {task.title}</h3>
+         {/* Render description */}
+         <p className="task-description">Descrition: {task.description}</p>
          {/* PRIORITY*/}
          <span className={`priority-badge ${task.priority}`}>
-            {task.priority.toUpperCase()}
+            {/* {task.priority.toUpperCase()} */}
+            <p>Priority:{task.priority.toUpperCase()} </p>
          </span>
-         {/* Dropdown to change task status */}
-         <select value={task.status} onChange={handleStatusSelect}>
-            <option value="pending">Pending</option>
-            <option value="in-progress">In Progress</option>
-            <option value="completed">Completed</option>
-         </select>
-         <button className="delete-btn" onClick={handleDelete}>
-            Delete
-         </button>
-         <button className="edit-btn" onClick={() => onEditTask(task)}>
-            Edit
-         </button>
-         <p>Due: {dateFormating(task.dueDate)}</p>
+         <div className="task-actions">
+            {/* Dropdown to change task status */}
+            <select value={task.status} onChange={handleStatusSelect}>
+               <option value="pending">Pending</option>
+               <option value="in-progress">In Progress</option>
+               <option value="completed">Completed</option>
+            </select>
+            <button className="delete-btn" onClick={handleDelete}>
+               <i className="fas fa-trash-alt"></i>
+               Delete
+            </button>
+            <button className="edit-btn" onClick={() => onEditTask(task)}>
+               Edit
+            </button>
+
+            {/* <button
+               className="delete-btn"
+               onClick={handleDelete}
+               aria-label="Delete Task">
+               <i className="fas fa-trash-alt"></i>
+            </button>
+            <button
+               className="edit-btn"
+               onClick={() => onEditTask(task)}
+               aria-label="Edit Task">
+               <i className="fas fa-edit"></i>
+            </button> */}
+         </div>
+         <p>Due Date: {dateFormating(task.dueDate)}</p>
       </li>
    );
 }

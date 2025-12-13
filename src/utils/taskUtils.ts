@@ -47,22 +47,11 @@ export function sortTask(
          return copySorted;
 
       case "dueDate":
-      // Dates need to be compared using getTime()
-      // return copySorted.sort(
-      //    (a, b) =>
-      //       new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-      // );
-
-      case "dueDate":
-         return [...tasks].sort((a, b) => {
-            const aTime = new Date(a.dueDate).getTime();
-            const bTime = new Date(b.dueDate).getTime();
-
-            if (isNaN(aTime)) return 1; // push invalid dates down
-            if (isNaN(bTime)) return -1;
-
-            return aTime - bTime; // ✅ EARLIEST → LATEST
-         });
+         // Dates need to be compared using getTime()
+         return copySorted.sort(
+            (a, b) =>
+               new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+         );
 
       case "priority":
          const priorityOrder: Priority[] = ["high", "medium", "low"];
@@ -107,12 +96,21 @@ export function validateTask(data: TaskFormData): string | null {
 }
 //----------------------------------------------------------
 
+// export function dateFormating(dateString: string) {
+//    const date = new Date(dateString);
+//    const yyyy = date.getFullYear();
+//    const mm = String(date.getMonth() + 1).padStart(2, "0"); // 01-12
+//    const dd = String(date.getDate()).padStart(2, "0"); // 01-31
+//    return `${yyyy}-${mm}-${dd}`;
+// }
 //Date formating function
 export function dateFormating(dateString: string) {
    const date = new Date(dateString);
    return date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
+      // month: "numeric",
+
       day: "numeric",
    });
 }

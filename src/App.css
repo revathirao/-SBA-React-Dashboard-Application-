@@ -132,22 +132,44 @@ body {
 ---------------------------------------*/
 .task-item {
    background: white;
+   border: 1px solid #dcdcdc;
+   border-radius: 10px;
    border-radius: 10px;
    padding: 1rem;
    margin-bottom: 1rem;
    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
    text-align: left;
+   position: relative;
 }
 
+.task-item {
+   border: 1px solid #dcdcdc;
+   border-radius: 10px;
+   padding: 20px;
+   margin: 20px 0;
+   background: #fff;
+   position: relative; /* Key: Establishes context for absolute positioning */
+   /* Removed: display: flex; flex-direction: column; gap: 10px; */
+}
 .task-item h3 {
    margin: 0;
    font-size: 1.1rem;
 }
-
+/* 
 .task-actions {
    margin-top: 10px;
    display: flex;
    justify-content: space-between;
+} */
+
+.task-actions {
+   position: absolute; /* Key: Positions this element relative to the .task-item */
+   top: 15px; /* Adjusts vertical position from the top (considering padding) */
+   right: 15px; /* Adjusts horizontal position from the right (considering padding) */
+   display: flex;
+   align-items: center;
+   border: none;
+   gap: 10px; /* Adds space between the select dropdown and the button */
 }
 
 .delete-btn {
@@ -159,9 +181,9 @@ body {
    cursor: pointer;
 }
 
-.delete-btn:hover {
+/* .delete-btn:hover {
    background: #e60000;
-}
+} */
 
 /* --------------------------------------
    PRIORITY BADGES
@@ -174,7 +196,7 @@ body {
    font-size: 0.85rem;
 }
 
-.task-priority.low {
+/* .task-priority.low {
    background: #d4f7d4;
    color: #2d7a32;
 }
@@ -187,6 +209,21 @@ body {
 .task-priority.high {
    background: #ffe0e0;
    color: #b30000;
+} */
+
+.task-priority.low {
+   **background: transparent !important; /* Changed from #d4f7d4 */**
+   color: #2d7a32;
+}
+
+.task-priority.medium {
+   **background: transparent !important; /* Changed from #fff4cc */**
+   color: #b8860b;
+}
+
+.task-priority.high {
+   **background: transparent !important; /* Changed from #ffe0e0 */**
+   color: #b30000;
 }
 
 .priority-badge {
@@ -194,6 +231,8 @@ body {
    border-radius: 6px;
    font-size: 0.75rem;
    font-weight: bold;
+   border: none;
+   /* border-radius: 10px; */
 }
 
 .priority-badge.low {
@@ -250,11 +289,18 @@ body[data-theme="dark"] select {
    color: white;
    border: 1px solid #666;
 }
+
+body[data-theme="dark"] .task-description {
+   color: #ccc; /* Changes the text color for better contrast in dark mode */
+}
+
 /* --------------------------------------
    THEME BUTTON
 ---------------------------------------*/
 .theme-toggle-btn {
-   margin-top: 2rem;
+   /* margin-top: 2rem; */
+   margin-top: 0;
+
    padding: 10px 20px;
    background: #6644ff;
    color: white;
@@ -265,6 +311,13 @@ body[data-theme="dark"] select {
 
 .theme-toggle-btn:hover {
    background: #5936d9;
+}
+.task-description {
+   margin-top: 0.5rem; /* Adds a small space above the description */
+   margin-bottom: 1rem; /* Adds space below it before the priority badge */
+   font-size: 0.95rem; /* Makes the text slightly smaller than the default body text */
+   color: #555; /* A slightly softer color for light mode */
+   line-height: 1.4; /* Improves readability */
 }
 
 .task-stats {
@@ -284,6 +337,37 @@ body[data-theme="dark"] select {
    padding: 8px 12px;
    border-radius: 6px;
 }
+
+.task-form button,
+.delete-btn,
+.edit-btn {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 6px 10px; /* Reduces vertical padding slightly for icons */
+}
+
+/* Add style for the edit button since you didn't have one before */
+.edit-btn {
+   background: #4a90e2;
+   color: white;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   transition: 0.2s;
+}
+
+.delete-btn {
+   background: #ff4d4d; /* Ensures delete button is red */
+   color: white;
+   /* ... other styles ... */
+}
+
+/* .edit-btn {
+   /* background: #4a90e2; Ensures edit button is blue */
+   /* color: white;
+   
+} */
 
 /* Colors */
 .task-stats p:nth-child(1) {

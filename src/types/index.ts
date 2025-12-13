@@ -1,6 +1,7 @@
 export type TaskStatus = "all" | "pending" | "in-progress" | "completed";
 export type Priority = "all" | "low" | "medium" | "high";
 export type Theme = "light" | "dark";
+export type SortOrder = "asc" | "desc";
 
 //task
 export interface Task {
@@ -19,6 +20,7 @@ export interface TaskFormData {
    priority: Priority;
    dueDate: string;
    status: TaskStatus;
+   // sortOrder: SortOrder;
 }
 
 export interface TaskFilterOptions {

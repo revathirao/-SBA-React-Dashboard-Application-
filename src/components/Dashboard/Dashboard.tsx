@@ -28,6 +28,7 @@ export function Dashboard({
    onUpdateTask,
    onToggleTheme,
 }: DashboardWithFiltersProps) {
+  
    const [editingTask, setEditingTask] = useState<Task | null>(null);
 
    const handleEditTask = (updated: TaskFormData) => {

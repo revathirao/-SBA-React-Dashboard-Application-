@@ -36,6 +36,8 @@ export function TaskFilter({ filters, onChangeFilters }: TaskFilterProps) {
       });
    };
 
+   console.log("Current sortBy:", filters.sortBy);
+
    return (
       // Container div for the TaskFilter component
       <div className="task-filter" style={{ marginBottom: "1rem" }}>
