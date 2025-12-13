@@ -25,7 +25,7 @@ export interface TaskFilterOptions {
    status: TaskStatus;
    priority: Priority;
    search: string;
-   sortBy?: "dueDate" | "priority" | "status" | "none";
+   sortBy: "dueDate" | "priority" | "status" | "none";
 }
 
 //Taskfilter props

@@ -58,9 +58,9 @@ export function TaskFilter({ filters, onChangeFilters }: TaskFilterProps) {
                   })
                }>
                <option value="none">None</option>
-               <option value="dueDate">due Date</option>
-               <option value="priority">priority</option>
-               <option value="status">status</option>
+               <option value="dueDate">Due Date (latest)</option>
+               <option value="priority">Priority</option>
+               <option value="status">Status</option>
             </select>
          </label>
 

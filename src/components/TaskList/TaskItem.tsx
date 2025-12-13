@@ -48,19 +48,16 @@ export function TaskItem({
    return (
       <li className="task-item">
          <h3> {task.title}</h3>
-
          {/* PRIORITY*/}
          <span className={`priority-badge ${task.priority}`}>
             {task.priority.toUpperCase()}
          </span>
-
          {/* Dropdown to change task status */}
          <select value={task.status} onChange={handleStatusSelect}>
             <option value="pending">Pending</option>
             <option value="in-progress">In Progress</option>
             <option value="completed">Completed</option>
          </select>
-
          <button className="delete-btn" onClick={handleDelete}>
             Delete
          </button>

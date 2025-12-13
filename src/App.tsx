@@ -9,23 +9,9 @@ import type {
    TaskFilterOptions,
    Theme,
 } from "./types";
+import "./App.css";
 
 export default function App() {
-   //    // const { theme: initialTheme, toggleTheme: rawToggleTheme } = setupTheme();
-
-   //    //  Setup theme using your beginner-friendly function
-   //    const { theme, toggleTheme } = setupTheme();
-
-   // const toggleTheme = () => {
-   //    const newTheme = rawToggleTheme();
-   //    setTheme(newTheme);
-   // };
-   //    // Wrap toggleTheme to update React state
-   //   const toggleTheme = () => {
-   //     const newTheme = rawToggleTheme(); // updates localStorage and body attribute
-   //     setTheme(newTheme); // triggers React re-render
-   //   };
-
    // Get theme + toggle function from utility
    const { theme: initialTheme, toggleTheme: toggleThemeFromUtils } =
       setupTheme();
@@ -46,7 +32,7 @@ export default function App() {
    });
 
    const [filters, setFilters] = useState<TaskFilterOptions>(() => {
-      // Try to get saved filters from localStorage
+      // Get saved filters from localStorage
       const saved = localStorage.getItem("filters");
 
       // If found, parse and return it; otherwise, return default values
@@ -54,6 +40,7 @@ export default function App() {
          ? JSON.parse(saved)
          : { status: "all", priority: "all", search: "", sortBy: "none" };
    });
+   console.log("App.tsx rendering. Current sortBy value:", filters.sortBy);
 
    // Save tasks to localStorage whenever they change
    useEffect(() => {

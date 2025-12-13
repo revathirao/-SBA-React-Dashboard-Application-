@@ -43,9 +43,17 @@ export function Dashboard({
       setEditingTask(null); // clear editing state
    };
 
-   //  Apply filtering and sorting
+   // Apply filtering and sorting
    const filteredTasks = filterTask(tasks, filters);
+
    const sortedTasks = sortTask(filteredTasks, filters.sortBy);
+
+   console.log(
+      "Dashboard rendering with sort by:",
+      filters.sortBy,
+      "and task order:",
+      sortedTasks.map((t) => t.title)
+   );
 
    //Compute task statistics
    const totalTasks = tasks.length;
@@ -92,7 +100,7 @@ export function Dashboard({
             <button onClick={onToggleTheme} className="theme-toggle-btn">
                Toggle {theme === "light" ? "Dark" : "Light"} Mode
             </button>
-         </div>   
+         </div>
       </div>
    );
 }

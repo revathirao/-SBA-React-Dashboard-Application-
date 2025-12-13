@@ -214,7 +214,7 @@ body {
 /* --------------------------------------
    DARK MODE
 ---------------------------------------*/
-body.dark {
+/* body.dark {
    background: #1c1c1c;
    color: white;
 }
@@ -231,8 +231,25 @@ body.dark select {
    background: #444;
    color: white;
    border: 1px solid #666;
+} */
+body[data-theme="dark"] {
+   background: #1c1c1c;
+   color: white;
 }
 
+body[data-theme="dark"] .task-item,
+body[data-theme="dark"] .task-form,
+body[data-theme="dark"] .task-filter {
+   background: #2d2d2d;
+   box-shadow: none;
+}
+
+body[data-theme="dark"] input,
+body[data-theme="dark"] select {
+   background: #444;
+   color: white;
+   border: 1px solid #666;
+}
 /* --------------------------------------
    THEME BUTTON
 ---------------------------------------*/

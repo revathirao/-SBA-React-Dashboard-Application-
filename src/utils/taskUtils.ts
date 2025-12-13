@@ -41,15 +41,28 @@ export function sortTask(
 ): Task[] {
    const copySorted = [...tasks];
 
-   switch (sortBy) {
+   switch (sortBy.toLowerCase()) {
       case "none":
-         return tasks;
+         // When sortBy is 'none', return the tasks array as is (or the original copy)
+         return copySorted;
 
       case "dueDate":
-         return copySorted.sort(
-            (a, b) =>
-               new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-         );
+      // Dates need to be compared using getTime()
+      // return copySorted.sort(
+      //    (a, b) =>
+      //       new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+      // );
+
+      case "dueDate":
+         return [...tasks].sort((a, b) => {
+            const aTime = new Date(a.dueDate).getTime();
+            const bTime = new Date(b.dueDate).getTime();
+
+            if (isNaN(aTime)) return 1; // push invalid dates down
+            if (isNaN(bTime)) return -1;
+
+            return aTime - bTime; // ✅ EARLIEST → LATEST
+         });
 
       case "priority":
          const priorityOrder: Priority[] = ["high", "medium", "low"];
