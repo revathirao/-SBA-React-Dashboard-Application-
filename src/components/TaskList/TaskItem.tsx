@@ -71,33 +71,30 @@ export function TaskItem({
                value={task.status}
                onChange={handleStatusSelect}
                className="task-status-select">
-                  
                <option value="pending">Pending</option>
                <option value="in-progress">In Progress</option>
                <option value="completed">Completed</option>
             </select>
+
             <button className="delete-btn" onClick={handleDelete}>
                <i className="fas fa-trash-alt"></i>
                Delete
             </button>
-            <button className="edit-btn" onClick={() => onEditTask(task)}>
-               Edit
-            </button>
 
-            {/* <button
-               className="delete-btn"
-               onClick={handleDelete}
-               aria-label="Delete Task">
-               <i className="fas fa-trash-alt"></i>
-            </button>
+            {/* <button className="edit-btn" onClick={() => onEditTask(task)}>
+               <i className="fas fa-edit"></i>
+               Edit
+            </button> */}
+
             <button
                className="edit-btn"
-               onClick={() => onEditTask(task)}
-               aria-label="Edit Task">
-               <i className="fas fa-edit"></i>
-            </button> */}
+               onClick={() => {
+                  localStorage.setItem("editingTask", JSON.stringify(task)); // ✅ ADDED
+                  onEditTask(task);
+               }}>
+               Edit
+            </button>
          </div>
-         {/* <p id="task-prority-due" className="task-due-date"> */}
       </li>
    );
 }

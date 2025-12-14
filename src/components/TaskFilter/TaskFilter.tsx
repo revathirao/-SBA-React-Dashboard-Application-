@@ -1,7 +1,12 @@
 import React from "react";
 import type { TaskFilterProps } from "../../types";
 
-// TaskFilter component allows users to filter tasks by search text, status, and priority
+/**
+ * The `TaskFilter` component provides UI elements for users to refine the list of displayed tasks
+ * based on search text, status, priority, and sorting preference.
+ * * It is a controlled component: it receives current `filters` from a parent component (likely Document.tsx)
+ * and uses the `onChangeFilters` callback to communicate user selections back up, triggering a state update and subsequent re-render.
+ */
 export function TaskFilter({ filters, onChangeFilters }: TaskFilterProps) {
    /* Function to handle when the user changes the task status filter
     * It updates the parent component with the new filter values.
@@ -36,8 +41,6 @@ export function TaskFilter({ filters, onChangeFilters }: TaskFilterProps) {
       });
    };
 
-   console.log("Current sortBy:", filters.sortBy);
-
    return (
       // Container div for the TaskFilter component
       <div className="task-filter" style={{ marginBottom: "1rem" }}>
@@ -65,14 +68,6 @@ export function TaskFilter({ filters, onChangeFilters }: TaskFilterProps) {
                <option value="status">Status</option>
             </select>
          </label>
-
-         {/* Dropdown to filter tasks by status */}
-         {/*
-          * A dropdown menu (select input) that displays and changes the task's current status.
-          ** 'value={task.status}' sets the initially selected option based on the task's data.
-          ** 'onChange={handleStatusSelect}' binds the user's status change action
-          * to the 'handleStatusSelect' function defined above in the component logic.
-          */}
          <label style={{ marginLeft: "20px" }}>
             Status:{" "}
             <select

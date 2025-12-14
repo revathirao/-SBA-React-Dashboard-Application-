@@ -7,6 +7,12 @@ import type {
 } from "../types";
 
 //filtering fubction
+/**
+ * Filters a list of tasks based on provided criteria (status, priority, search term).
+ * @param tasks The array of all tasks.
+ * @param filters The criteria to filter by.
+ * @returns A new array containing only the tasks that match all filters.
+ */
 
 export function filterTask(tasks: Task[], filters: TaskFilterOptions) {
    return tasks.filter((task) => {
@@ -27,7 +33,7 @@ export function filterTask(tasks: Task[], filters: TaskFilterOptions) {
       ) {
          return false;
       }
-
+      // If all filters pass, include the task.
       return true;
    });
 }
@@ -35,6 +41,13 @@ export function filterTask(tasks: Task[], filters: TaskFilterOptions) {
 //---------------------------------------------------------------------
 
 //Sorting function
+/**
+ * Sorts a list of tasks based on a specified field (dueDate, priority, status, or none).
+ * Sorting is done in ascending order for dates/priorities/statuses.
+ * @param tasks The array of tasks to sort.
+ * @param sortBy The field name used as the sorting key.
+ * @returns A new sorted array of tasks.
+ */
 export function sortTask(
    tasks: Task[],
    sortBy: TaskFilterOptions["sortBy"]
@@ -73,14 +86,18 @@ export function sortTask(
          );
 
       default:
-         return copySorted;
+         return copySorted; // Fallback: return the copied array unsorted
    }
 }
 
 //-------------------------------------------------
 
 //Validation
-
+/**
+ * Validates the input data from a task form.
+ * @param data The task form data to validate.
+ * @returns A string containing an error message if validation fails, or `null` if the data is valid.
+ */
 export function validateTask(data: TaskFormData): string | null {
    if (!data.title.trim()) {
       return "Task title is required.";
@@ -92,25 +109,22 @@ export function validateTask(data: TaskFormData): string | null {
       return "Due date is required.";
    }
 
+   // Return null if all validations pass
    return null;
 }
 //----------------------------------------------------------
 
-// export function dateFormating(dateString: string) {
-//    const date = new Date(dateString);
-//    const yyyy = date.getFullYear();
-//    const mm = String(date.getMonth() + 1).padStart(2, "0"); // 01-12
-//    const dd = String(date.getDate()).padStart(2, "0"); // 01-31
-//    return `${yyyy}-${mm}-${dd}`;
-// }
 //Date formating function
+/**
+ * Formats an ISO date string into a readable locale-specific string (e.g., "Nov 25, 2025").
+ * @param dateString The input date string (e.g., from an HTML date input).
+ * @returns A formatted date string.
+ */
 export function dateFormating(dateString: string) {
    const date = new Date(dateString);
    return date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
-      // month: "numeric",
-
       day: "numeric",
    });
 }

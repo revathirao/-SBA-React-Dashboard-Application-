@@ -5,7 +5,7 @@
    text-align: center;
 }
 
-/*GLOBAL STYLES*/
+/*-----GLOBAL STYLES*-------------*/
 
 body {
    font-family: "Inter", sans-serif;
@@ -23,10 +23,10 @@ body {
 
 .app-header {
    display: flex;
-   justify-content: space-between; /** NEW: Pushes the title and button to opposite ends **/
-   align-items: center; /** NEW: Vertically centers them **/
-   margin-bottom: 2rem; /** NEW: Adds space below the header before the filter bar **/
-   padding: 0 1rem; /** NEW: Ensures it aligns with your dashboard-container padding **/
+   justify-content: space-between;
+   align-items: center; /*Vertically centers them **/
+   margin-bottom: 2rem; /*Adds space below the header before the filter bar **/
+   padding: 0 1rem; /*Ensures it aligns with your dashboard-container padding **/
 }
 
 h1 {
@@ -37,7 +37,7 @@ h1 {
    transition: color 0.4s ease;
 }
 
-/*   FILTER BAR*/
+/*----- FILTER BAR=-----------------*/
 
 .task-filter {
    background: white;
@@ -72,7 +72,7 @@ h1 {
    background-color: #eee;
 }
 
-/* FORM STYLING */
+/*------ FORM STYLING------- */
 
 .task-form {
    margin-top: 1rem;
@@ -127,7 +127,7 @@ h1 {
    background: #365578 !important;
 }
 
-/* TASK ITEM SECTION */
+/* ------TASK ITEM SECTION------ */
 
 .task-item {
    background: white;
@@ -234,7 +234,7 @@ h1 {
 }
 
 .edit-btn {
-   background: #3498db; /* A nice blue color */
+   background: #3498db;
    color: white;
    padding: 6px 10px;
    border: none;
@@ -304,28 +304,14 @@ h1 {
    color: black;
 } /* In progress */
 
-/* THEME tOGGLE BUTTON */
+/*--------- THEME tOGGLE BUTTON-------- */
 
-/* .theme-toggle-btn { */
-/* margin-top: 0; */
-/* padding: 10px 20px;
-   background: #6644ff;
-   color: white;
-   border: none;
-   border-radius: 8px;
-   cursor: pointer;
-   box-shadow: 0 2px 5px rgba(102, 68, 255, 0.4);
-   transition: background-color 0.2s, box-shadow 0.2s;
-} */
-
-/* --- The Beautified Icon Theme Toggle Button Styles --- */
+/* --- The Icon Theme Toggle Button Styles --- */
 .theme-toggle-btn {
-   /* MODIFIED: Making it a subtle, icon-focused button */
    background: none; /* No background needed */
    color: #95a5a6; /* A neutral gray that works in both light and dark modes */
    border: none;
-   padding: 0; /* No padding needed around the icon itself */
-   cursor: pointer;
+   padding: 0;
    font-size: 1.5rem; /* Makes the icon a good size */
    transition: color 0.3s ease; /* Smooth color change on hover/theme */
 }
@@ -334,7 +320,7 @@ h1 {
    background: #5936d9;
 }
 
-/* DARK MODE */
+/*---------- DARK MODE------- */
 
 body[data-theme="dark"] {
    background: #1c1c1c;
@@ -365,7 +351,6 @@ body[data-theme="dark"] select {
 body[data-theme="dark"] .task-description {
    color: #ccc;
    background-color: #3a3a3a; /* Darker background for the box */
-   /* border-color: #555; Slightly lighter border for contrast */
    border: 1px solid #666;
 }
 
