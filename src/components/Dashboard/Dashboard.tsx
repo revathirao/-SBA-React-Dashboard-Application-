@@ -54,7 +54,7 @@ export function Dashboard({
       setEditingTask(null); // clear editing state
    };
 
-   //  filtering and sorting
+   //----  filtering and sorting
    // These steps process the raw tasks data into a viewable list based on user filters.
 
    // Apply filtering based on search, status, and priority

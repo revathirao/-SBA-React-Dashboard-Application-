@@ -19,10 +19,6 @@ export function TaskList({
    onDelete,
    onEditTask,
 }: TaskListProps) {
-   console.log(
-      "Rendering TaskList with tasks:",
-      tasks.map((t) => t.dueDate)
-   );
    return (
       <div>
          {tasks.length === 0 ? ( // Check if the 'tasks' array is empty.

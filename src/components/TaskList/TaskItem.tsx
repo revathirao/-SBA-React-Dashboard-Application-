@@ -81,17 +81,13 @@ export function TaskItem({
                Delete
             </button>
 
-            {/* <button className="edit-btn" onClick={() => onEditTask(task)}>
-               <i className="fas fa-edit"></i>
-               Edit
-            </button> */}
-
             <button
                className="edit-btn"
                onClick={() => {
                   localStorage.setItem("editingTask", JSON.stringify(task)); // ✅ ADDED
                   onEditTask(task);
                }}>
+               <i className="fas fa-edit"></i>
                Edit
             </button>
          </div>
